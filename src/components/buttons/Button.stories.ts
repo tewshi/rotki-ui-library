@@ -15,16 +15,16 @@ const meta: Meta<typeof Button> = {
   render,
   argTypes: {
     label: { control: 'text' },
-    outlined: { control: 'boolean' },
-    secondary: { control: 'boolean' },
-    error: { control: 'boolean' },
-    tile: { control: 'boolean' },
-    elevated: { control: 'boolean' },
-    text: { control: 'boolean' },
-    sm: { control: 'boolean' },
-    lg: { control: 'boolean' },
-    disabled: { control: 'boolean' },
-    loading: { control: 'boolean' }
+    outlined: { control: 'boolean', table: { category: 'Style' } },
+    secondary: { control: 'boolean', table: { category: 'Color' } },
+    error: { control: 'boolean', table: { category: 'Color' } },
+    tile: { control: 'boolean', table: { category: 'Shape' } },
+    elevated: { control: 'boolean', table: { category: 'Shape' } },
+    text: { control: 'boolean', table: { category: 'Style' } },
+    sm: { control: 'boolean', table: { category: 'Size' } },
+    lg: { control: 'boolean', table: { category: 'Size' } },
+    disabled: { control: 'boolean', table: { category: 'State' } },
+    loading: { control: 'boolean', table: { category: 'State' } }
   },
   parameters: {
     docs: {

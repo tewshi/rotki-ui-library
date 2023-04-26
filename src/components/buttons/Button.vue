@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useCssModule } from 'vue-demi';
 import { useTheme } from '@/composables/theme';
 
 withDefaults(
