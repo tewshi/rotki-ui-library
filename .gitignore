@@ -151,3 +151,4 @@ dist
 auto-imports.d.ts
 
 .DS_Store
+storybook-static
