@@ -1,4 +1,4 @@
-import '../src/style.css'
+import '@/style.css';
 import type { Preview } from '@storybook/vue';
 
 const preview: Preview = {
