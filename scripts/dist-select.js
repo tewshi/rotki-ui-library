@@ -13,11 +13,16 @@ parser.add_argument('--force-version', { type: 'str' });
 const args = parser.parse_args();
 const { force_version } = args;
 
-if (force_version !== 'undefined') {
+if (force_version) {
   if (force_version === '3') {
     switchVersion(3);
-  } else {
+  } else if (force_version === '2') {
     switchVersion(2);
+  } else {
+    console.warn(
+      `[vue3-sketch-ruler] Vue version v${Vue.version} is not supported.`
+    );
+    process.exit(1);
   }
 
   return;
@@ -33,6 +38,7 @@ if (!Vue || typeof Vue.version !== 'string') {
   switchVersion(3);
 } else {
   console.warn(
-    `[vue3-sketch-ruler] Vue version v${Vue.version} is not suppported.`
+    `[vue3-sketch-ruler] Vue version v${Vue.version} is not supported.`
   );
+  process.exit(1);
 }

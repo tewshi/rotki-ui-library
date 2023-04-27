@@ -1,4 +1,3 @@
-import '@/plugins/head';
 import { type Meta, type StoryFn } from '@storybook/vue';
 import Button from './Button.vue';
 

@@ -63,7 +63,7 @@ const css = useCssModule();
 <style lang="scss" module>
 .btn {
   @apply bg-rui-primary-500 text-white text-sm hover:bg-rui-primary-600 disabled:bg-black/[.12] dark:disabled:bg-white/[.12];
-  @apply px-4 py-1.5 rounded-full disabled:text-black/[.26] dark:disabled:text-white/[.30];
+  @apply px-4 py-1.5 rounded-full disabled:text-black/[.26] dark:disabled:text-white/[.30] focus:outline-0 focus-within:outline-0;
 
   &.tile {
     @apply rounded;

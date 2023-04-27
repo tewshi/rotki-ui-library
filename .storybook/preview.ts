@@ -1,4 +1,6 @@
 import '@/style.css';
+import '@/plugins/head';
+import '@/setup-theme';
 import type { Preview } from '@storybook/vue';
 
 const preview: Preview = {
