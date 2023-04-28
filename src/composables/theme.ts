@@ -1,5 +1,5 @@
-import { get, set } from '@vueuse/core';
-import { type ComputedRef, type Ref } from 'vue-demi';
+import { get, set, useDark } from '@vueuse/core';
+import { type ComputedRef, type Ref, computed, ref } from 'vue-demi';
 
 export const enum ThemeMode {
   auto,
@@ -29,6 +29,20 @@ export interface ThemeConfig {
   dark: ThemeData;
 }
 
+export interface ThemeContent {
+  themeMode: Ref<ThemeMode>;
+  isDark: ComputedRef<boolean>;
+  isLight: ComputedRef<boolean>;
+  theme: ComputedRef<ThemeData>;
+  config: Ref<ThemeConfig>;
+  switchThemeMode: (mode: ThemeMode) => void;
+  toggleThemeMode: (light: boolean) => void;
+  switchController: (ctrl: ThemeController) => void;
+  setAutoController: () => void;
+  toggleAutoController: () => void;
+  setThemeConfig: (newConfig: ThemeConfig) => void;
+}
+
 const defaultTheme = {
   light: {
     primaryLight: '176 107 87',
@@ -54,18 +68,22 @@ const defaultTheme = {
   }
 };
 
-export const useTheme = (defaults?: ThemeConfig) => {
+export const useTheme = (defaults?: ThemeConfig): ThemeContent => {
   const controller: Ref<ThemeController> = ref(ThemeController.system);
   const themeMode: Ref<ThemeMode> = ref(ThemeMode.auto);
-  const config = ref<ThemeConfig>(defaults ?? defaultTheme);
+  const config: Ref<ThemeConfig> = ref(defaults ?? defaultTheme);
 
   const isAutoControlled: ComputedRef<boolean> = computed(
     () => get(controller) === ThemeController.system
   );
-  const isLight = computed(() => get(themeMode) === ThemeMode.light);
-  const isDark = computed(() => get(themeMode) === ThemeMode.dark);
+  const isLight: ComputedRef<boolean> = computed(
+    () => get(themeMode) === ThemeMode.light
+  );
+  const isDark: ComputedRef<boolean> = computed(
+    () => get(themeMode) === ThemeMode.dark
+  );
 
-  const theme = computed(() => {
+  const theme: ComputedRef<ThemeData> = computed(() => {
     if (get(isLight)) {
       return get(config).light;
     }
@@ -82,7 +100,7 @@ export const useTheme = (defaults?: ThemeConfig) => {
   };
 
   const autoDark = useDark({
-    onChanged: darkMode => {
+    onChanged: (darkMode: boolean) => {
       if (get(isAutoControlled)) {
         switchThemeMode(darkMode ? ThemeMode.dark : ThemeMode.light);
       }

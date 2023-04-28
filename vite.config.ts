@@ -35,7 +35,7 @@ export default defineConfig({
     })
   ],
   optimizeDeps: {
-    exclude: ['vue-demi', '@vueuse/head']
+    exclude: ['vue-demi']
   },
   build: {
     outDir: `./dist/v${isVue3 ? '3' : '2'}`,
