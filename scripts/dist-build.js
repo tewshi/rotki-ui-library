@@ -4,7 +4,7 @@ const path = require('node:path');
 
 const dist = path.resolve(__dirname, '..', 'dist');
 if (fs.existsSync(dist)) {
-  fs.rmdirSync(dist, { recursive: true });
+  fs.rmSync(dist, { recursive: true });
 }
 
 const tailwind = spawnSync('pnpm', ['build:tailwind']);

@@ -1,7 +1,9 @@
 import '@/style.css';
 import '@/plugins/head';
-import '@/setup-theme';
 import type { Preview } from '@storybook/vue';
+import { setupTheme } from '../src';
+
+setupTheme();
 
 const preview: Preview = {
   parameters: {

@@ -40,9 +40,6 @@
     "vue": ">=2.7.14"
   },
   "dependencies": {
-    "@vueuse/core": "10.1.0",
-    "@vueuse/head": "1.1.26",
-    "@vueuse/shared": "10.1.0",
     "vue-demi": "0.14.0"
   },
   "devDependencies": {
@@ -62,6 +59,9 @@
     "@vitejs/plugin-vue2": "2.2.0",
     "@vue/compiler-sfc": "3.2.47",
     "@vue/tsconfig": "0.3.2",
+    "@vueuse/core": "10.1.0",
+    "@vueuse/head": "1.1.26",
+    "@vueuse/shared": "10.1.0",
     "argparse": "2.0.1",
     "autoprefixer": "10.4.14",
     "babel-loader": "8.3.0",

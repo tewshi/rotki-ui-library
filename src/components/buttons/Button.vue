@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { useCssModule } from 'vue-demi';
-import { useTheme } from '@/composables/theme';
+import { useListeners } from 'vue';
 
 withDefaults(
   defineProps<{
@@ -30,37 +29,33 @@ withDefaults(
     lg: false
   }
 );
-
-const { toggleAutoController } = useTheme();
-const css = useCssModule();
+const listeners = useListeners();
 </script>
 <template>
   <button
-    :class="[
-      css.btn,
-      {
-        [css.secondary]: secondary,
-        [css.outlined]: outlined,
-        [css.disabled]: disabled,
-        [css.elevated]: elevated,
-        [css.loading]: loading,
-        [css.error]: error,
-        [css.tile]: tile,
-        [css.text]: text,
-        [css.sm]: sm,
-        [css.lg]: lg
-      }
-    ]"
+    :class="{
+      secondary,
+      outlined,
+      disabled,
+      elevated,
+      loading,
+      error,
+      tile,
+      text,
+      sm,
+      lg
+    }"
     :disabled="disabled"
-    @click="toggleAutoController"
+    class="btn"
+    v-on="listeners"
   >
     <slot name="prefix" />
-    {{ label }}
+    <span class="btn-label"> {{ label }} </span>
     <slot name="suffix" />
   </button>
 </template>
 
-<style lang="scss" module>
+<style lang="scss" scoped>
 .btn {
   @apply bg-rui-primary-500 text-white text-sm hover:bg-rui-primary-600 disabled:bg-black/[.12] dark:disabled:bg-white/[.12];
   @apply px-4 py-1.5 rounded-full disabled:text-black/[.26] dark:disabled:text-white/[.30] focus:outline-0 focus-within:outline-0;

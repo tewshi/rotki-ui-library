@@ -1,15 +1,18 @@
 import { useHead } from '@vueuse/head';
 import { get } from '@vueuse/core';
-import { useTheme } from '@/composables/theme';
+import { type ThemeConfig, useTheme } from '@/composables/theme';
 
-const { theme } = useTheme();
+export const setupTheme = (config?: ThemeConfig) => {
+  const themeConfig = useTheme(config);
 
-useHead(
-  {
-    style: [
-      {
-        key: 'rui-ui-root',
-        textContent: () => `
+  const { theme } = themeConfig;
+
+  useHead(
+    {
+      style: [
+        {
+          key: 'rui-ui-root',
+          textContent: () => `
         :root {
           --rui-primary-light: ${get(theme).primaryLight};
           --rui-primary: ${get(theme).primary};
@@ -22,8 +25,11 @@ useHead(
           --rui-error-dark: ${get(theme).errorDark};
         }
       `
-      }
-    ]
-  },
-  { mode: 'client' }
-);
+        }
+      ]
+    },
+    { mode: 'client' }
+  );
+
+  return themeConfig;
+};

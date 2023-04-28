@@ -1,5 +1,5 @@
 import { get, set } from '@vueuse/core';
-import { computed, reactive, ref } from 'vue-demi';
+import { type ComputedRef, type Ref } from 'vue-demi';
 
 export const enum ThemeMode {
   auto,
@@ -29,35 +29,37 @@ export interface ThemeConfig {
   dark: ThemeData;
 }
 
-export const useTheme = () => {
-  const controller = ref(ThemeController.system);
-  const themeMode = ref(ThemeMode.auto);
-  const config = reactive<ThemeConfig>({
-    light: {
-      primaryLight: '176 107 87',
-      primary: '126 74 59',
-      primaryDark: '99 58 46',
-      secondaryLight: '66 165 245',
-      secondary: '25 118 210',
-      secondaryDark: '21 101 192',
-      errorLight: '239 83 80',
-      error: '211 47 47',
-      errorDark: '198 40 40'
-    },
-    dark: {
-      primaryLight: '226 201 194',
-      primary: '208 166 154',
-      primaryDark: '189 131 114',
-      secondaryLight: '227 242 253',
-      secondary: '144 202 249',
-      secondaryDark: '66, 165, 245',
-      errorLight: '229 115 115',
-      error: '244 67 54',
-      errorDark: '211 47 47'
-    }
-  });
+const defaultTheme = {
+  light: {
+    primaryLight: '176 107 87',
+    primary: '126 74 59',
+    primaryDark: '99 58 46',
+    secondaryLight: '66 165 245',
+    secondary: '25 118 210',
+    secondaryDark: '21 101 192',
+    errorLight: '239 83 80',
+    error: '211 47 47',
+    errorDark: '198 40 40'
+  },
+  dark: {
+    primaryLight: '226 201 194',
+    primary: '208 166 154',
+    primaryDark: '189 131 114',
+    secondaryLight: '227 242 253',
+    secondary: '144 202 249',
+    secondaryDark: '66, 165, 245',
+    errorLight: '229 115 115',
+    error: '244 67 54',
+    errorDark: '211 47 47'
+  }
+};
 
-  const isAutoControlled = computed(
+export const useTheme = (defaults?: ThemeConfig) => {
+  const controller: Ref<ThemeController> = ref(ThemeController.system);
+  const themeMode: Ref<ThemeMode> = ref(ThemeMode.auto);
+  const config = ref<ThemeConfig>(defaults ?? defaultTheme);
+
+  const isAutoControlled: ComputedRef<boolean> = computed(
     () => get(controller) === ThemeController.system
   );
   const isLight = computed(() => get(themeMode) === ThemeMode.light);
@@ -65,10 +67,10 @@ export const useTheme = () => {
 
   const theme = computed(() => {
     if (get(isLight)) {
-      return config.light;
+      return get(config).light;
     }
 
-    return config.dark;
+    return get(config).dark;
   });
 
   const switchThemeMode = (mode: ThemeMode) => {
@@ -104,6 +106,10 @@ export const useTheme = () => {
     );
   };
 
+  const setThemeConfig = (newConfig: ThemeConfig) => {
+    set(config, newConfig);
+  };
+
   return {
     themeMode,
     isDark,
@@ -114,6 +120,7 @@ export const useTheme = () => {
     toggleThemeMode,
     switchController,
     setAutoController,
-    toggleAutoController
+    toggleAutoController,
+    setThemeConfig
   };
 };
