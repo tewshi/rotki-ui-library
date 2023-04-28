@@ -40,7 +40,10 @@
     "vue": ">=2.7.14"
   },
   "dependencies": {
-    "vue-demi": "0.14.0"
+    "vue-demi": "0.14.0",
+    "tailwindcss": "3.3.2",
+    "vite": "4.3.3",
+    "vue-tsc": "1.6.0"
   },
   "devDependencies": {
     "@babel/core": "7.21.4",
@@ -73,13 +76,10 @@
     "react-dom": "18.2.0",
     "sass": "1.62.1",
     "storybook": "7.0.7",
-    "tailwindcss": "3.3.2",
     "typescript": "5.0.4",
     "unplugin-auto-import": "0.15.3",
-    "vite": "4.3.3",
     "vue": "2.7.14",
     "vue-loader": "17.1.0",
-    "vue-tsc": "1.6.0",
     "webpack": "5.81.0"
   },
   "engines": {
