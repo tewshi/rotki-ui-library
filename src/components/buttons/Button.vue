@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { useListeners } from 'vue';
-
 withDefaults(
   defineProps<{
     label?: string;
@@ -29,7 +27,6 @@ withDefaults(
     lg: false
   }
 );
-const listeners = useListeners();
 </script>
 <template>
   <button
@@ -47,7 +44,7 @@ const listeners = useListeners();
     }"
     :disabled="disabled"
     class="btn"
-    v-on="listeners"
+    v-bind="$attrs"
   >
     <slot name="prefix" />
     <span class="btn-label"> {{ label }} </span>

@@ -18,7 +18,7 @@
     "postinstall": "pnpm build:prod",
     "dist:build": "node scripts/dist-build.js",
     "dist:select": "node scripts/dist-select.js",
-    "build:prod": "pnpm build:tailwind && pnpm build:types && pnpm build:prod:v3 && pnpm build:prod:v2 && pnpm dist:select",
+    "build:prod": "pnpm dist:build && pnpm dist:select",
     "build:prod:v2": "pnpm switch:v2 && vite build",
     "build:prod:v3": "pnpm switch:v3 && vite build",
     "build:v2": "pnpm run dist:select --force-version=2",
@@ -40,6 +40,8 @@
     "vue": ">=2.7.14"
   },
   "dependencies": {
+    "@vitejs/plugin-vue": "4.2.1",
+    "@vitejs/plugin-vue2": "2.2.0",
     "@vueuse/core": "10.1.0",
     "@vueuse/head": "1.1.26",
     "@vueuse/shared": "10.1.0",
@@ -61,8 +63,6 @@
     "@storybook/vue": "7.0.7",
     "@storybook/vue-vite": "7.0.7",
     "@types/node": "18.16.1",
-    "@vitejs/plugin-vue": "4.2.1",
-    "@vitejs/plugin-vue2": "2.2.0",
     "@vue/compiler-sfc": "3.2.47",
     "@vue/tsconfig": "0.3.2",
     "argparse": "2.0.1",

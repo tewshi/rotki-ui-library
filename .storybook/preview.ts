@@ -1,5 +1,5 @@
 import '@/style.css';
-import '@/plugins/head';
+import './head';
 import type { Preview } from '@storybook/vue';
 import { setupTheme } from '../src';
 
