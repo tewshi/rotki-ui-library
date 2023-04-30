@@ -28,6 +28,7 @@ withDefaults(
   }
 );
 </script>
+
 <template>
   <button
     :class="{

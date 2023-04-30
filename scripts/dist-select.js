@@ -20,9 +20,7 @@ if (force_version) {
   } else if (force_version === '2') {
     switchVersion(2);
   } else {
-    console.warn(
-      `[vue3-sketch-ruler] Vue version v${Vue.version} is not supported.`
-    );
+    console.warn(`[rotki-ui] Vue version v${Vue.version} is not supported.`);
     process.exit(1);
   }
 
@@ -31,15 +29,13 @@ if (force_version) {
 
 if (!Vue || typeof Vue.version !== 'string') {
   console.warn(
-    '[vue3-sketch-ruler] Vue is not found. Please run "pnpm install vue" to install.'
+    '[rotki-ui] Vue is not found. Please run "pnpm install vue" to install.'
   );
 } else if (isVue3) {
   switchVersion(3);
 } else if (isVue2) {
   switchVersion(2);
 } else {
-  console.warn(
-    `[vue3-sketch-ruler] Vue version v${Vue.version} is not supported.`
-  );
+  console.warn(`[rotki-ui] Vue version v${Vue.version} is not supported.`);
   process.exit(1);
 }
