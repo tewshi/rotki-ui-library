@@ -23,7 +23,8 @@
     "build:prod:v3": "pnpm switch:v3 && vite build",
     "build:v2": "pnpm run dist:select --force-version=2",
     "build:v3": "pnpm run dist:select --force-version=3",
-    "build": "pnpm build:v2 && pnpm build:v3",
+    "build": "vite build",
+    "build:all": "pnpm build:v2 && pnpm build:v3",
     "build:storybook": "storybook build",
     "build:tailwind": "tailwindcss -o dist/style.css --minify",
     "build:types": "vue-tsc -p tsconfig.build.json",
@@ -39,7 +40,19 @@
   "peerDependencies": {
     "vue": ">=2.7.14"
   },
-  "devDependencies": {
+  "dependencies": {
+    "@vitejs/plugin-vue": "4.2.1",
+    "@vitejs/plugin-vue2": "2.2.0",
+    "@vueuse/core": "10.1.0",
+    "@vueuse/head": "1.1.26",
+    "@vueuse/shared": "10.1.0",
+    "sass": "1.62.1",
+    "tailwindcss": "3.3.2",
+    "tsc-alias": "1.8.6",
+    "vite": "4.3.3",
+    "vue-demi": "0.14.0",
+    "vue-tsc": "1.6.1",
+
     "@babel/core": "7.21.4",
     "@babel/types": "7.21.4",
     "@rotki/eslint-config": "1.0.6",
@@ -72,18 +85,5 @@
   },
   "engines": {
     "pnpm": ">=8 <9"
-  },
-  "dependencies": {
-    "@vitejs/plugin-vue": "4.2.1",
-    "@vitejs/plugin-vue2": "2.2.0",
-    "@vueuse/core": "10.1.0",
-    "@vueuse/head": "1.1.26",
-    "@vueuse/shared": "10.1.0",
-    "sass": "1.62.1",
-    "tailwindcss": "3.3.2",
-    "tsc-alias": "1.8.6",
-    "vite": "4.3.3",
-    "vue-demi": "0.14.0",
-    "vue-tsc": "1.6.1"
   }
 }
