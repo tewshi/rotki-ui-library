@@ -22,11 +22,23 @@ tailwind.on('close', code => {
 const types = spawn('pnpm', ['build:types'], {
   stdio: [process.stdout, process.stderr]
 });
+
 types.on('close', code => {
   if (code !== 0) {
     console.error('build:types failed', types.error);
     process.exit(code);
   }
+
+  const resolveAlias = spawn('pnpm', ['resolve:alias'], {
+    stdio: [process.stdout, process.stderr]
+  });
+
+  resolveAlias.on('close', code => {
+    if (code !== 0) {
+      console.error('resolve:alias failed', types.error);
+      process.exit(code);
+    }
+  });
 });
 
 if (isVue3) {
@@ -44,6 +56,7 @@ if (isVue3) {
   const v2 = spawn('pnpm', ['build:prod:v2'], {
     stdio: [process.stdout, process.stderr]
   });
+
   v2.on('close', code => {
     if (code !== 0) {
       console.error('build:v2 failed', v2.error);
