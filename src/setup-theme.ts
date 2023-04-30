@@ -1,8 +1,12 @@
 import { useHead } from '@vueuse/head';
 import { get } from '@vueuse/core';
-import { type ThemeConfig, useTheme } from '@/composables/theme';
+import {
+  type ThemeConfig,
+  type ThemeContent,
+  useTheme
+} from '@/composables/theme';
 
-export const setupTheme = (config?: ThemeConfig) => {
+export const setupTheme = (config?: ThemeConfig): ThemeContent => {
   const themeConfig = useTheme(config);
 
   const { theme } = themeConfig;

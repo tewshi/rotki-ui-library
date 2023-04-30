@@ -14,7 +14,7 @@ const tailwind = spawn('pnpm', ['build:tailwind'], {
 
 tailwind.on('close', code => {
   if (code !== 0) {
-    console.error('build:tailwind failed', tailwind.error);
+    console.error('[rotki-ui] build:tailwind failed');
     process.exit(code);
   }
 });
@@ -25,7 +25,7 @@ const types = spawn('pnpm', ['build:types'], {
 
 types.on('close', code => {
   if (code !== 0) {
-    console.error('build:types failed', types.error);
+    console.error('[rotki-ui] build:types failed');
     process.exit(code);
   }
 
@@ -35,7 +35,7 @@ types.on('close', code => {
 
   resolveAlias.on('close', code => {
     if (code !== 0) {
-      console.error('resolve:alias failed', types.error);
+      console.error('[rotki-ui] resolve:alias failed');
       process.exit(code);
     }
   });
@@ -48,7 +48,7 @@ if (isVue3) {
 
   v3.on('close', code => {
     if (code !== 0) {
-      console.error('build:v3 failed', v3.error);
+      console.error('[rotki-ui] build:v3 failed');
       process.exit(code);
     }
   });
@@ -59,7 +59,7 @@ if (isVue3) {
 
   v2.on('close', code => {
     if (code !== 0) {
-      console.error('build:v2 failed', v2.error);
+      console.error('[rotki-ui] build:v2 failed');
       process.exit(code);
     }
   });
