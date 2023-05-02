@@ -1,9 +1,6 @@
-import '@/style.css';
-import './head';
+import '../src/style.css';
 import type { Preview } from '@storybook/vue';
-import { setupTheme } from '../src';
-
-setupTheme();
+import { vueInstance } from './app';
 
 const preview: Preview = {
   parameters: {
@@ -13,6 +10,10 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/
       }
+    },
+    vueInstance: {
+      defaultValue: vueInstance,
+      control: { type: 'object' }
     }
   }
 };

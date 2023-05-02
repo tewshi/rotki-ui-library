@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useAttrs, useCssModule } from 'vue-demi';
+
 withDefaults(
   defineProps<{
     label?: string;
@@ -27,25 +29,34 @@ withDefaults(
     lg: false
   }
 );
+
+const emit = defineEmits<{ (e: 'click', event: MouseEvent): void }>();
+
+const attrs = useAttrs();
+const css = useCssModule();
 </script>
 
 <template>
   <button
-    :class="{
-      secondary,
-      outlined,
-      disabled,
-      elevated,
-      loading,
-      error,
-      tile,
-      text,
-      sm,
-      lg
-    }"
+    :class="[
+      css.btn,
+      {
+        [css.secondary]: secondary,
+        [css.outlined]: outlined,
+        [css.disabled]: disabled,
+        [css.elevated]: elevated,
+        [css.loading]: loading,
+        [css.error]: error,
+        [css.tile]: tile,
+        [css.text]: text,
+        [css.sm]: sm,
+        [css.lg]: lg
+      }
+    ]"
     :disabled="disabled"
     class="btn"
-    v-bind="$attrs"
+    v-bind="attrs"
+    @click="emit('click', $event)"
   >
     <slot name="prefix" />
     <span class="btn-label"> {{ label }} </span>
@@ -53,7 +64,7 @@ withDefaults(
   </button>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .btn {
   @apply bg-rui-primary-500 text-white text-sm hover:bg-rui-primary-600 disabled:bg-black/[.12] dark:disabled:bg-white/[.12];
   @apply px-4 py-1.5 rounded-full disabled:text-black/[.26] dark:disabled:text-white/[.30] focus:outline-0 focus-within:outline-0;

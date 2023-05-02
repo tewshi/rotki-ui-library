@@ -27,6 +27,8 @@
       "dom"
     ],
     "types": [
+      "node",
+      "vue",
       "vite/client"
     ]
   },
